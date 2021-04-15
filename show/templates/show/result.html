@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <div class="formmer">
+    {% for i in result %}
+      <p>{{i}}</p>
+
+    {% endfor %}
+  </div>
+  <p><strong>{{sum}}</strong></p>
+
+
+{% endblock %}

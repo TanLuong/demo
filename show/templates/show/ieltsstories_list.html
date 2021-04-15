@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Story List</h1>
+  {% if ieltsstories_list %}
+  <ul>
+    {% for story in ieltsstories_list %}
+      <li>
+        <a href="{{ story.get_absolute_url }}">{{ story.title }}</a>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no story in the Stories</p>
+  {% endif %}
+{% endblock %}

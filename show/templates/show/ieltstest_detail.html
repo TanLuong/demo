@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <div class="formmer">{{t}}
+    <form action="{% url 'test-detail' sub %}" method="POST" name="ha">
+      {% csrf_token %}
+
+    {% for i in content %}
+      <h5>{{i.qnumber}}. {{i.qcontent}}</h5>
+
+
+
+
+        <input type="radio" name="{{i.qnumber}}" id ="{{i.answera}}" value ='{{i.answera}}'>
+        <label for="{{i.answera}}" >{{i.answera}}</label><br>
+
+
+        <input type="radio" name="{{i.qnumber}}" id ="{{i.answerb}}" value ='{{i.answerb}}'>
+        <label for="{{i.answerb}}" >{{i.answerb}}</label><br>
+
+
+        <input type="radio" name="{{i.qnumber}}" id ="{{i.answerc}}" value ='{{i.answerc}}'>
+        <label for="{{i.answerc}}" >{{i.answerc}}</label><br>
+
+
+        <input type="radio" name="{{i.qnumber}}" id ="{{i.answerd}}" value ='{{i.answerd}}'>
+        <label for="{{i.answerd}}" >{{i.answerd}}</label><br>
+
+    {% endfor %}
+    <input type="submit" value="submit" style ="float:left; background-color:yellow;
+                                                  margin-left:40%  ">
+    </form>
+  </div>
+
+
+
+{% endblock %}

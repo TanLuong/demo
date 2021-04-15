@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ ieltsstories.title }}</h1>
+
+  <div style="margin-left:20px;margin-top:20px">
+    {{ieltsstories.content|safe}}
+  </div>
+{% endblock %}
