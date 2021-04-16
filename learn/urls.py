@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 urlpatterns += [
-    path('show/', include('show.urls')),
-    path('', RedirectView.as_view(url='show/', permanent=True)),
+    path('catalog/', include('show.urls')),
+    path('', RedirectView.as_view(url='catalog/', permanent=True)),
 ]
