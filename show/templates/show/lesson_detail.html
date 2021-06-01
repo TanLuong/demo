@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ lesson.title }}</h1>
+
+  <div style="margin-left:20px;margin-top:20px">
+    {{lesson.content|safe}}
+    {{lesson.question|safe}}
+    <audio controls>
+     <source src={{lesson.audio}} type="audio/mpeg">
+       {{lesson.audio}}
+    </audio>
+  </div>
+{% endblock %}

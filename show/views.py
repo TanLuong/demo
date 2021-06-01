@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import ieltsstories, ieltstest
+from .models import ieltsstories, ieltstest, lesson
+
 
 def index(request):
     """View function for home page of site."""
@@ -36,7 +37,7 @@ class ieltsstoriesDetailView(generic.DetailView):
     model = ieltsstories
     def story_detail_view(request, primary_key):
         ieltsstories = get_object_or_404(Ieltsstories, pk=primary_key)
-        return render(request, 'catalog/ieltsstories_detail.html', context={'story': ieltsstories})
+        return render(request, 'show/ieltsstories_detail.html', context={'story': ieltsstories})
 
 def test_list(request):
     l =[]
@@ -78,3 +79,34 @@ def testDetailView(request,sub):
 def result(request,sub):
 
     return render(request, 'show/result.html',context=context)
+
+def lessonList(request):
+    context ={'levels':['basic','intermedia','advance']}
+    return render(request, 'show/lesson_list.html', context=context)
+
+def lessonlevelListView(request):
+
+    if 'basic' in request.path:
+        lesson1 = lesson.objects.all().filter(type = 1)
+    elif 'intermedia' in request.path:
+        lesson1 = lesson.objects.all().filter(type = 2)
+    else:
+        lesson1 = lesson.objects.all().filter(type = 3)
+    context = {'lesson1':lesson1}
+    return render(request, 'show/level.html', context = context)
+
+class lessonDetailView(generic.DetailView):
+    model = lesson
+    def lesson_detail_view(request, primary_key):
+        lesson = get_object_or_404(lesson, pk=primary_key)
+        return render(request, 'show/lesson_detail.html')
+
+
+class searchListView(generic.ListView):
+    model = ieltsstories
+    context_object_name = 'stories'
+    template_name = 'show/search.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('story')
+        return ieltsstories.objects.filter(title__icontains = query)

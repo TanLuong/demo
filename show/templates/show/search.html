@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <h1>Story List</h1>
+  {% if stories %}
+  <ul>
+    {% for story in stories %}
+      <li>
+        <a href="{{ story.get_absolute_url }}">{{ story.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>you search story to be not exist</p>
+  {% endif %}
+{% endblock %}
